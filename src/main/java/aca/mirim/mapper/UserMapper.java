@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
 
 public interface UserMapper {
@@ -16,6 +17,9 @@ public interface UserMapper {
 	
 	@Select("SELECT * FROM userTbl WHERE id=#{id}")
 	public UserVO getUser(String id);
+	
+	@Select("SELECT * FROM userTbl WHERE id=#{loginId} AND password=#{loginPw}")
+	public UserVO login(LoginDTO login);
 	
 	@Insert("INSERT INTO userTbl VALUES(#{id}, #{password}, #{uname}, #{birth}, #{tel})")
 	public void insertUser(UserVO user);

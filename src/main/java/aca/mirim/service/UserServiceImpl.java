@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
 import aca.mirim.mapper.UserMapper;
 
@@ -37,6 +38,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void remove(String id) {
 		userMapper.deleteUser(id);
+	}
+	
+	@Override
+	public UserVO login(LoginDTO login) {
+		return userMapper.login(login);
 	}
 	
 }

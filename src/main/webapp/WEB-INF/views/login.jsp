@@ -11,13 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
-    <script src="/resources/js/main.js"></script>
+    <script src="<c:url value="/resources/js/main.js"/>"></script>
 </head>
 <body>
     <div id="login">
         <form action="login" method="post" id="login_form">
-            <input class="login" type="text" id="login_id" name="id" placeholder="ID"> <br>
-            <input class="login" type="password" id="login_pw" name="pw" placeholder="비밀번호">
+            <input class="login" type="text" id="login_id" name="loginId" placeholder="ID"> <br>
+            <input class="login" type="password" id="login_pw" name="loginPw" placeholder="비밀번호">
             <input type="button" class="btn_login" value="로그인" onclick="login()">
             <input type="button" class="btn_login" value="회원이 아니신가요?" onclick="location.href='join'">
         </form>

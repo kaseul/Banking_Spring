@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
+import aca.mirim.mapper.UserMapper;
 import aca.mirim.service.UserService;
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -56,9 +60,19 @@ public class HomeController {
 	}
 	
 	@PostMapping("/login")
-	public String login_post(Model model, UserVO user) {
+	public String login_post(Model model, LoginDTO login, HttpSession session) {
+		System.out.println("login post,,,,,,,,,,");
 		
-		return "redirect:/index";
+		UserVO user = userService.login(login);
+		
+		if(user == null) {
+			
+			return "redirect:/login";
+		}
+		
+		session.setAttribute("login", user);
+		
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/join")
