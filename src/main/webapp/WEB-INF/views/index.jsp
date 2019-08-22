@@ -23,13 +23,11 @@
     </style>
 </head>
 <body>
-    <center>
-        <div id="header">
-           	 송금 시스템
-        </div>
-        <button class="basic" style="position: absolute; bottom: 100px; left: 50%; transform: translate(-50%)" onclick="location.href='login'">
-           	 로그인
-        </button>
-    </center>
+	<div id="header">
+       	 송금 시스템
+    </div>
+    <button class="basic" style="position: absolute; bottom: 100px; left: 50%; transform: translate(-50%)" onclick="location.href='login'">
+       	 로그인
+    </button>
 </body>
 </html>

@@ -1,13 +1,9 @@
 package aca.mirim.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
-import aca.mirim.mapper.UserMapper;
 import aca.mirim.service.UserService;
-import oracle.jdbc.proxy.annotation.Post;
 
 /**
  * Handles requests for the application home page.
@@ -31,7 +26,7 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -55,8 +50,16 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-	public void login_get() {
+	public void login_get(@RequestParam(required=false) String result, Model model) {
 		System.out.println("login get,,,,,,,,");
+		
+		if(result == null) {
+			model.addAttribute("result", "null");
+		}
+		else {
+			System.out.println(result);
+			model.addAttribute("result", result);
+		}
 	}
 	
 	@PostMapping("/login")
@@ -66,13 +69,13 @@ public class HomeController {
 		UserVO user = userService.login(login);
 		
 		if(user == null) {
-			
+			model.addAttribute("result", "fail");
 			return "redirect:/login";
 		}
 		
-		session.setAttribute("login", user);
+		session.setAttribute("login", user.getId());
 		
-		return "redirect:/main";
+		return "redirect:/user";
 	}
 	
 	@GetMapping("/join")
@@ -92,5 +95,11 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
+	@GetMapping("/user")
+	public void user_get(Model model, HttpSession session) {
+		System.out.println("user get,,,,,,,,,,,");
+		
+		model.addAttribute("user", userService.getUser((String)session.getAttribute("login")));
+	}
 	
 }
