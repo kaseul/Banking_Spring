@@ -7,12 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
 import aca.mirim.service.UserService;
 
-//@Controller
+@Controller
 public class UserController {
 	
 	@Autowired
@@ -33,20 +34,26 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/modify")
-	public void modify_get() {
+	public void modify_get(Model model, HttpSession session) {
 		System.out.println("modify get,,,,,,,");
+		
+		model.addAttribute("user", userService.getUser((String)session.getAttribute("login")));
 	}
 	
 	@PostMapping("/user/modify")
 	public String modify_post(UserVO user, Model model) {
+		userService.modify(user);
 		
 		return "redirect:/user";
 	}
 	
 	@GetMapping("/user/remove")
-	public void remove(HttpSession session) {
+	public String remove(HttpSession session) {
 		
 		userService.remove((String)session.getAttribute("login"));
+		session.removeAttribute("login");
+		
+		return "redirect:/";
 	}
 	
 }

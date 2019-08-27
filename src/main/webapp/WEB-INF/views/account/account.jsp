@@ -21,16 +21,7 @@
             background-size: cover;
         }
     </style>
-    <script>
-    	function remove() {
-    		if(confirm('정말로 탈퇴하시겠습니까?')) {
-    			location.href="/user/remove";
-    		}
-    		else {
-    			
-    		}
-    	}
-    </script>
+    
 </head>
 <body>
 	<div id="header">
@@ -44,31 +35,28 @@
 		  <li><a href="/transaction">거래 내역 조회</a></li>
 		</ul>
     </div>
-    <div id="user">
-    	<h1>회원 정보</h1>
+    <div id="account">
+    	<h1>계좌</h1>
     	<hr width="80%">
-    	<table style="">
-            <tr>
-                <td width="120">ID</td>
-                <td>${user.id}</td>
-            </tr>
-            <tr>
-                <td>이름</td>    
-                <td>${user.uname}</td>
-            </tr>
-            <tr>
-                <td>생년월일</td>
-                <td><f:formatDate value="${user.birth}" pattern="YYYY/MM/dd"/></td>
-            </tr>
-            <tr>
-                <td>전화번호</td>
-                <td>${user.tel}</td>
-            </tr>
+    	<table style="width: 80%">
+    		<tr>
+    			<th>은행</th>
+    			<th>계좌번호</th>
+    			<th>잔액</th>
+    		</tr>
+            <c:forEach var="account" items="${accounts}">
+            	<tr>
+            		<td>${account.bcode}</td>
+            		<td>${account.aid}</td>
+            		<td><f:formatNumber value="${account.balance}"></f:formatNumber></td>
+            	</tr>
+            </c:forEach>
             <tr>
             	<td><button onclick="location.href='/user/modify'">정보 수정</button></td>
             	<td><button class="right" onclick="remove()">회원 탈퇴</button></td>
             </tr>
         </table>
     </div>
+    
 </body>
 </html>

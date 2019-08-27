@@ -28,12 +28,16 @@ button {
     height: 50px;
     font-size: 18px;
     background: white;
-    border: none;
+    border: 1px solid #263646;
     border-radius: 5px;
 }
 
 button:hover {
     background-color: aliceblue;
+}
+
+button.right {
+	float: right;
 }
 
 #header {
@@ -71,8 +75,7 @@ button:hover {
 
 #user {
 	width: 60%;
-	height: 500px;
-    padding: 15px;
+    padding: 15px 15px 40px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -89,10 +92,11 @@ button:hover {
 
 #user table tr {
 	border: 1px solid black;
+	height: 50px;
 }
 
 #user table tr td {
-	padding: 20px;
+	padding-left: 20px;
 	font-size: 18px;
 	font-style: normal;
 }
@@ -100,6 +104,11 @@ button:hover {
 #user table tr td:nth-child(1) {
 	padding-left: 0px;
 	border-right: 0.5px solid #263646;
+}
+
+#user table tr:last-child td {
+	padding-top: 20px;
+	border: none;
 }
 
 .title {

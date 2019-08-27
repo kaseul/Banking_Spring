@@ -21,7 +21,6 @@
     	function check_id() {
     		var id = document.getElementById('join_id').value.trim();
     		document.getElementById('check').innerHTML = "";
-    		alert("");
     		for(var i in users) {
     			var uname = users[i];
     			if(id == uname) {
