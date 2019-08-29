@@ -28,3 +28,12 @@ function join() {
         document.getElementById('join_form').submit();
     }
 }
+
+function remove(msg, url) {
+	if(confirm(msg)) {
+		location.href=url;
+	}
+	else {
+		
+	}
+}

@@ -11,18 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href='<c:url value="/resources/css/main.css"/>'>
     <script src="<c:url value="/resources/js/main.js"/>"></script>
-    <style>
-        html {
-            margin: 0 auto;
-            padding: 0;
-            background: url('<c:url value="/resources/image/index_background.jpg"/>') no-repeat center center fixed; 
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-    </style>
-    
 </head>
 <body>
 	<div id="header">
@@ -39,13 +27,37 @@
     <div id="account">
     	<h1>계좌</h1>
     	<hr width="80%">
+    	<form id="modify_form" action="/account/register" method="post">
+	    	<table style="">
+	            <tr>
+	                <td width="120">계좌번호</td>
+	                <td><input class="join" type="text" id="aid" name="aid" placeholder="계좌번호" required autofocus></td>
+	                <input type="hidden" name="id" value="${user.id}">
+	            </tr>
+	            <tr>
+	                <td>계좌주</td>    
+	                <td>${user.uname}</td>
+	            </tr>
+	            <tr>
+	                <td>
+	                	<select name="bcode">
+	                		<c:forEach var="bank" items="${banks}">
+	                			<option value="${bank.bcode}">${bank.bname}</option>
+	                		</c:forEach>
+	                	</select>
+                	</td>    
+	                <td><input class="join" type="password" id="pw" name="password" value="${user.password}" required></td>
+	            <tr>
+	            	<td colspan="2" style="text-align: center"><button type="button" onclick="check()">정보 수정</button></td>
+	            </tr>
+	        </table>
+        </form>
     	<table style="width: 80%">
     		<tr>
     			<th>은행</th>
     			<th>계좌번호</th>
     			<th>잔액</th>
     		</tr>
-    		
             <c:forEach var="account" items="${accounts}">
             	<tr>
             		<td>${account.bcode}</td>

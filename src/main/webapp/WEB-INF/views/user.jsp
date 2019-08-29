@@ -21,16 +21,6 @@
             background-size: cover;
         }
     </style>
-    <script>
-    	function remove() {
-    		if(confirm('정말로 탈퇴하시겠습니까?')) {
-    			location.href="/user/remove";
-    		}
-    		else {
-    			
-    		}
-    	}
-    </script>
 </head>
 <body>
 	<div id="header">
@@ -66,7 +56,7 @@
             </tr>
             <tr>
             	<td><button onclick="location.href='/user/modify'">정보 수정</button></td>
-            	<td><button class="right" onclick="remove()">회원 탈퇴</button></td>
+            	<td><button class="right" onclick="remove('탈퇴하시겠습니까?', '/user/remove')">회원 탈퇴</button></td>
             </tr>
         </table>
     </div>
