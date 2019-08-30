@@ -28,7 +28,7 @@
     	<h1>계좌</h1>
     	<hr width="80%">
     	<form id="modify_form" action="/account/register" method="post">
-	    	<table style="">
+	    	<table class="default">
 	            <tr>
 	                <td width="120">계좌번호</td>
 	                <td><input class="join" type="text" id="aid" name="aid" placeholder="계좌번호" required autofocus></td>
@@ -52,25 +52,6 @@
 	            </tr>
 	        </table>
         </form>
-    	<table style="width: 80%">
-    		<tr>
-    			<th>은행</th>
-    			<th>계좌번호</th>
-    			<th>잔액</th>
-    		</tr>
-            <c:forEach var="account" items="${accounts}">
-            	<tr>
-            		<td>${account.bcode}</td>
-            		<td>${account.aid}</td>
-            		<td><f:formatNumber value="${account.balance}"></f:formatNumber></td>
-            		<td><button type="button" onclick="location.href='/account/modify'">계좌 수정</button></td>
-            	</tr>
-            </c:forEach>
-            <tr>
-            	<td colspan="2"><button onclick="location.href='/account/register'">계좌 등록</button></td>
-            	<td colspan="2"><button class="right" onclick="remove('계좌를 해지하겠습니까?', '/account/remove')">계좌 해지</button></td>
-            </tr>
-        </table>
     </div>
     
 </body>

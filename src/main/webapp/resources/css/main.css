@@ -89,31 +89,35 @@ button.right {
     border-radius: 5px;
 }
 
-#user table {
+table.default {
 	width: 80%; 
 	margin: auto;
 	border-spacing: 0px;
 }
 
-#user table tr {
+table.default tr {
 	border: 1px solid black;
 	height: 50px;
 }
 
-#user table tr td {
+table.default tr td {
 	padding-left: 20px;
 	font-size: 18px;
 	font-style: normal;
 }
 
-#user table tr td:nth-child(1) {
+#user table.default tr td:nth-child(1) {
 	padding-left: 0px;
 	border-right: 0.5px solid #263646;
 }
 
-#user table tr:last-child td {
+#user table.default tr:last-child td {
 	padding-top: 20px;
 	border: none;
+}
+
+#account table {
+	text-align: center;
 }
 
 #account {
