@@ -39,7 +39,7 @@
     <div id="account">
     	<h1>계좌</h1>
     	<hr width="80%">
-    	<table class="default">
+    	<table class="default center">
     		<tr>
     			<th>은행</th>
     			<th colspan="2">계좌번호</th>

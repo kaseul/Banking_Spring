@@ -1,10 +1,10 @@
 package aca.mirim.domain;
 
 public class BankVO {
-
+	
 	private String bcode;
 	private String bname;
-	
+
 	public String getBcode() {
 		return bcode;
 	}

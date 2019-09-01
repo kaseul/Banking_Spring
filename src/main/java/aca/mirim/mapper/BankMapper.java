@@ -2,6 +2,7 @@ package aca.mirim.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import aca.mirim.domain.BankVO;

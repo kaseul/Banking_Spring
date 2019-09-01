@@ -54,7 +54,7 @@
     	<h1>회원 정보</h1>
     	<hr width="80%">
     	<form id="modify_form" action="/user/modify" method="post">
-	    	<table class="default">
+	    	<table class="default left">
 	            <tr>
 	                <td width="120">ID</td>
 	                <td>${user.id}</td>
