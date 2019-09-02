@@ -2,10 +2,12 @@ package aca.mirim.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import aca.mirim.domain.AccountJoinVO;
 import aca.mirim.domain.AccountVO;
 
 public interface AccountMapper {
@@ -22,7 +24,17 @@ public interface AccountMapper {
 	@Insert("INSERT INTO accountTbl VALUES(#{aid}, #{id}, #{bcode}, #{balance})")
 	public void insertAccount(AccountVO account);
 	
-	@Update("Update accountTbl SET balance = #{balance} WHERE aid = #{aid}")
+	@Update("UPDATE accountTbl SET balance = #{balance} WHERE aid = #{aid}")
 	public void updateAccount(AccountVO account);
+	
+	@Delete("DELETE FROM accountTbl WHERE aid = #{aid}")
+	public void deleteAccount(String aid);
+	
+	// 계좌 조회
+	@Select("SELECT a.aid, u.uname, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.id = #{id} AND a.id = u.id AND a.bcode = b.bcode")
+	public List<AccountJoinVO> getUserAccountJoins(String id);
+	
+	@Select("SELECT a.aid, u.uname, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.aid = #{aid} AND a.id = u.id AND a.bcode = b.bcode")
+	public AccountJoinVO getAccountJoin(String aid);
 	
 }

@@ -22,6 +22,29 @@
             background-size: cover;
         }
     </style>
+    <script>
+		function dropdown() {
+			document.getElementById("bankDropdown").classList.toggle("show");
+		}
+		
+		function selectBank(bcode, bname) {
+			document.getElementById("bcode").value = bcode;
+			document.getElementById("selectedBank").innerHTML = bname;
+		}
+		
+		window.onclick = function(event) {
+		  	if (!event.target.matches('.dropdiv')) {
+		    	var dropdowns = document.getElementsByClassName("dropdown-content");
+		    	var i;
+		    	for (i = 0; i < dropdowns.length; i++) {
+		    		var openDropdown = dropdowns[i];
+		      		if (openDropdown.classList.contains('show')) {
+		        		openDropdown.classList.remove('show');
+		      		}
+		    	}
+		  	}
+		}
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -36,34 +59,50 @@
 		</ul>
     </div>
     <div id="account">
-    	<h1>계좌</h1>
+    	<h1>계좌 등록</h1>
     	<hr width="80%">
-    	<form id="modify_form" action="/account/register" method="post">
+    	<form id="register_form" action="/account/register" method="post">
 	    	<table class="default left">
-	            <tr>
-	                <td width="140">계좌번호</td>
+	    		<tr>
 	                <td>
-	                	<input class="default" type="text" id="aid" name="aid" placeholder="계좌번호" required autofocus>
+	                	<%-- <select name="bcode">
+	                		<c:forEach var="bank" items="${banks}">
+	                			<option value="${bank.bcode}">${bank.bname}</option>
+	                		</c:forEach>
+	                	</select> --%>
+	                	<div class="dropdown">
+	                		<div id="selectedBank" class="dropdiv" onclick="dropdown()">
+	                			은행 종류 ▼
+	                		</div>
+	                		<div id="bankDropdown" class="dropdown-content">
+	                			<c:forEach var="bank" items="${banks}">
+		                			<a href="javascript:void(0)" onclick="selectBank('${bank.bcode}', '${bank.bname}')">
+		                				<img src="<c:url value="/resources/image/bank/${bank.bname}.png"/>" width="140" height="50">
+		                			</a>
+		                		</c:forEach>
+						  	</div>
+	                	</div>
+	                	<input type="hidden" id="bcode" name="bcode">
+                	</td>    
+	                <td>
+	                	<input class="default" type="text" id="aid" name="aid" placeholder="계좌번호" pattern="/[0-9/-]{9, 18}/" required autofocus>
                 	</td>
-	            </tr>
+                </tr>
 	            <tr>
-	                <td>계좌주</td>    
+	                <td width="140">계좌주</td>
 	                <td>
 	                	${user.uname}
 	                	<input type="hidden" name="id" value="${user.id}">
                 	</td>
 	            </tr>
-	            <tr>
+                <tr>
+                	<td>잔액</td>
 	                <td>
-	                	<select name="bcode">
-	                		<c:forEach var="bank" items="${banks}">
-	                			<option value="${bank.bcode}">${bank.bname}</option>
-	                		</c:forEach>
-	                	</select>
-                	</td>    
-	                <td><input class="default" type="password" id="pw" name="password" value="${user.password}" required></td>
+	                	<input class="default" type="number" id="balance" name="balance" placeholder="잔액" min="0" required>
+                	</td>
+                </tr>
 	            <tr>
-	            	<td colspan="2" style="text-align: center"><button type="button" onclick="check()">정보 수정</button></td>
+	            	<td colspan="2" style="text-align: center"><button type="submit">등록</button></td>
 	            </tr>
 	        </table>
         </form>

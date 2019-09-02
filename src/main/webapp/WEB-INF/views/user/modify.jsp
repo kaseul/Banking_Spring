@@ -57,8 +57,10 @@
 	    	<table class="default left">
 	            <tr>
 	                <td width="120">ID</td>
-	                <td>${user.id}</td>
-	                <input type="hidden" name="id" value="${user.id}">
+	                <td>
+	                	${user.id}
+	                	<input type="hidden" name="id" value="${user.id}">
+                	</td>
 	            </tr>
 	            <tr>
 	                <td>이름</td>    
@@ -66,11 +68,11 @@
 	            </tr>
 	            <tr>
 	                <td>비밀번호</td>    
-	                <td><input class="join" type="password" id="pw" name="password" value="${user.password}"></td>
+	                <td><input class="default" type="password" id="pw" name="password" value="${user.password}"></td>
 	            </tr>
 	            <tr>
 	                <td>비밀번호 확인</td>    
-	                <td><input class="join" type="password" id="pw_check" name="password_check" value="${user.password}"></td>
+	                <td><input class="default" type="password" id="pw_check" name="password_check" value="${user.password}"></td>
 	            </tr>
 	            <tr>
 	                <td>생년월일</td>
@@ -78,7 +80,7 @@
 	            </tr>
 	            <tr>
 	                <td>전화번호</td>
-	                <td><input class="join" type="text" id="join_pw" name="tel" value="${user.tel}"></td>
+	                <td><input class="default" type="text" id="join_pw" name="tel" value="${user.tel}"></td>
 	            </tr>
 	            <tr>
 	            	<td colspan="2" style="text-align: center"><button type="button" onclick="check()">정보 수정</button></td>

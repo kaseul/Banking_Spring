@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                     <td>전화번호</td>
-                    <td><input class="join" type="tel" id="join_tel" name="tel" placeholder="01000000000"></td>
+                    <td><input class="join" type="tel" id="join_tel" name="tel" placeholder="010-0000-0000" pattern="(010)-\d{3,4}-\d{4}"></td>
                 </tr>
             </table>
             

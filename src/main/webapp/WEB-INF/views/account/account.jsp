@@ -9,6 +9,7 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<script src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
     <link rel="stylesheet" href='<c:url value="/resources/css/main.css"/>'>
     <script src="<c:url value="/resources/js/main.js"/>"></script>
     <style>
@@ -22,7 +23,17 @@
             background-size: cover;
         }
     </style>
-    
+    <script>
+   		var result = "${result}";
+   		if(result != "null") {
+   			if(result == "register") {
+   				alert("계좌가 정상적으로 등록되었습니다.");
+   			}
+   			else if(result == "modify") {
+   				alert("계좌가 정상적으로 수정되었습니다.");
+   			}
+   		}
+    </script>
 </head>
 <body>
 	<div id="header">
@@ -39,11 +50,12 @@
     <div id="account">
     	<h1>계좌</h1>
     	<hr width="80%">
-    	<table class="default center">
+    	<table class="default center nopadding">
     		<tr>
     			<th>은행</th>
-    			<th colspan="2">계좌번호</th>
+    			<th>계좌번호</th>
     			<th>잔액</th>
+    			<th colspan="2" width="50"></th>
     		</tr>
     		<c:choose>
     			<c:when test="${accounts == 'null'}">
@@ -59,16 +71,27 @@
     			<c:otherwise>
     				<c:forEach var="account" items="${accounts}">
 		            	<tr>
-		            		<td>${account.bcode}</td>
+		            		<td>${account.bname}</td>
 		            		<td>${account.aid}</td>
 		            		<td><f:formatNumber value="${account.balance}"></f:formatNumber></td>
-		            		<td><button type="button" onclick="location.href='/account/modify'">계좌 수정</button></td>
+		            		<td style="text-align: right; padding: 0px; width: 50px;">
+		            			<a class="icon" href="/account/modify?aid=${account.aid}">
+		            				<i class="fas fa-pencil-alt"></i>
+		            			</a>
+	            			</td>
+	            			<td style="text-align: right; padding: 0px; width: 45px;">
+	            				<a class="icon" href="javascript:void(0)" onclick="remove('계좌 해지를 신청하시겠습니까?', '/account/remove?aid=${account.aid}')">
+		            				<i class="fas fa-times"></i>
+		            			</a>
+	            			</td>
 		            	</tr>
-		            	<tr>
-			            	<td colspan="2"><button onclick="location.href='/account/register'">계좌 등록</button></td>
-			            	<td colspan="2"><button class="right" onclick="remove('계좌를 해지하겠습니까?', '/account/remove')">계좌 해지</button></td>
-			            </tr>
-		            </c:forEach>	
+		            </c:forEach>
+		            <tr style="text-align: left;">
+		            	<td colspan="5" style="padding-left: 0px">
+		            		<button onclick="location.href='/account/register'">계좌 등록</button>
+		            		<button class="right" onclick="location.href='/remit'">송금</button>
+	            		</td>
+		            </tr>	
     			</c:otherwise>
     		</c:choose>
    		</table>
