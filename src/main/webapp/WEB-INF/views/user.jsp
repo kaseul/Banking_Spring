@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href='<c:url value="/resources/css/main.css"/>'>
+    <script src="<c:url value="/resources/js/main.js"/>"></script>
     <style>
         html {
             margin: 0 auto;

@@ -41,8 +41,8 @@
     </div>
     <div id="nav">
     	<ul>
-		  <li><a class="active" href="/user">회원 정보</a></li>
-		  <li><a href="/account">계좌</a></li>
+		  <li><a href="/user">회원 정보</a></li>
+		  <li><a class="active" href="/account">계좌</a></li>
 		  <li><a href="/remit">송금</a></li>
 		  <li><a href="/transaction">거래 내역 조회</a></li>
 		</ul>

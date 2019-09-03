@@ -51,7 +51,7 @@
 		</ul>
     </div>
     <div id="account">
-    	<h1>계좌 등록</h1>
+    	<h1>송금</h1>
     	<hr width="80%">
     	<form id="register_form" action="/account/register" method="post">
 	    	<table class="default left">
@@ -59,7 +59,7 @@
 	                <td>
 	                	<div class="dropdown">
 	                		<div id="selectedBank" class="dropdiv" onclick="dropdown()">
-	                			은행 종류
+	                			계좌 선택
 	                			<i class="fas fa-chevron-down"></i>
 	                		</div>
 	                		<div id="bankDropdown" class="dropdown-content">

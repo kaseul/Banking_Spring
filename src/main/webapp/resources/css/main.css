@@ -229,12 +229,15 @@ input.btn_join.right {
 }
 
 .dropdiv {
-	width: 140px;
+	margin-right: 10px;
+	padding: 0px 10px;
+	width: 150px;
   	height: 50px;
   	line-height: 50px;
-  	border: 1px solid #ddd;
+  	border: 1px solid gray;
   	border-radius: 5px;
   	cursor: pointer;
+  	font-size: 15px;
 }
 
 .dropdiv:hover, .dropdiv:focus {
@@ -249,21 +252,31 @@ input.btn_join.right {
 .dropdown-content {
   	display: none;
   	position: absolute;
-  	background-color: #f1f1f1;
-  	min-width: 160px;
+  	width: 170px;
   	max-height: 200px;
   	overflow: auto;
   	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   	z-index: 1;
+  	background: #fff;
 }
 
 .dropdown-content a {
-  	padding: 12px 16px;
+	display: block;
+	height: 50px;
+	line-height: 50px;
   	text-decoration: none;
-  	display: block;
-  	font-size: 10px;
+  	font-size: 12px;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown-content a img {
+	margin: 0px 5px;
+	vertical-align: middle;
+}
 
-.show {display: block;}
+.dropdown a:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
+}

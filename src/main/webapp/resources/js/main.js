@@ -37,3 +37,12 @@ function remove(msg, url) {
 		
 	}
 }
+
+function dropdown() {
+	document.getElementById("bankDropdown").classList.toggle("show");
+}
+
+function selectBank(bcode, bname) {
+	document.getElementById("bcode").value = bcode;
+	document.getElementById("selectedBank").innerHTML = bname + "  " + "<i class='fas fa-chevron-down'></i>";
+}
