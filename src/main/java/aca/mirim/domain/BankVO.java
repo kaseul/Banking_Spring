@@ -4,6 +4,7 @@ public class BankVO {
 	
 	private String bcode;
 	private String bname;
+	private int commission;
 
 	public String getBcode() {
 		return bcode;
@@ -17,10 +18,16 @@ public class BankVO {
 	public void setBname(String bname) {
 		this.bname = bname;
 	}
+	public int getCommission() {
+		return commission;
+	}
+	public void setCommission(int commission) {
+		this.commission = commission;
+	}
 	
 	@Override
 	public String toString() {
-		return "BankVO [bcode=" + bcode + ", bname=" + bname + "]";
+		return "BankVO [bcode=" + bcode + ", bname=" + bname + ", commission=" + commission + "]";
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -21,6 +22,9 @@ public interface AccountMapper {
 	@Select("SELECT * FROM accountTbl WHERE id = #{id}")
 	public List<AccountVO> getUserAccounts(String id);
 	
+	@Select("SELECT * FROM accountTbl WHERE aid = #{aid} AND bcode = #{bcode}")
+	public AccountVO getAccountWithBank(@Param("aid") String aid, @Param("bcode") String bcode);
+	
 	@Insert("INSERT INTO accountTbl VALUES(#{aid}, #{id}, #{bcode}, #{balance})")
 	public void insertAccount(AccountVO account);
 	
@@ -31,10 +35,10 @@ public interface AccountMapper {
 	public void deleteAccount(String aid);
 	
 	// 계좌 조회
-	@Select("SELECT a.aid, u.uname, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.id = #{id} AND a.id = u.id AND a.bcode = b.bcode")
+	@Select("SELECT a.aid, u.uname, b.bcode, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.id = #{id} AND a.id = u.id AND a.bcode = b.bcode")
 	public List<AccountJoinVO> getUserAccountJoins(String id);
 	
-	@Select("SELECT a.aid, u.uname, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.aid = #{aid} AND a.id = u.id AND a.bcode = b.bcode")
+	@Select("SELECT a.aid, u.uname, b.bcode, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.aid = #{aid} AND a.id = u.id AND a.bcode = b.bcode")
 	public AccountJoinVO getAccountJoin(String aid);
 	
 }

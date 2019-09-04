@@ -46,7 +46,7 @@ button:hover {
     background-color: aliceblue;
 }
 
-button.right {
+.right {
 	float: right;
 }
 
@@ -238,10 +238,16 @@ input.btn_join.right {
   	border-radius: 5px;
   	cursor: pointer;
   	font-size: 15px;
+  	display: inline-block;
 }
 
 .dropdiv:hover, .dropdiv:focus {
   	background-color: #ddd;
+}
+
+.dropdiv div {
+	display: inline;
+	float: right;
 }
 
 .dropdown {
@@ -258,6 +264,12 @@ input.btn_join.right {
   	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   	z-index: 1;
   	background: #fff;
+}
+
+.account {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 300px;
 }
 
 .dropdown-content a {

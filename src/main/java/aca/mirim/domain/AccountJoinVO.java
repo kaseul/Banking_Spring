@@ -4,6 +4,7 @@ public class AccountJoinVO {
 	
 	private String aid;
 	private String uname;
+	private String bcode;
 	private String bname;
 	private int balance;
 	
@@ -18,6 +19,12 @@ public class AccountJoinVO {
 	}
 	public void setUname(String uname) {
 		this.uname = uname;
+	}
+	public String getBcode() {
+		return bcode;
+	}
+	public void setBcode(String bcode) {
+		this.bcode = bcode;
 	}
 	public String getBname() {
 		return bname;
@@ -34,7 +41,8 @@ public class AccountJoinVO {
 	
 	@Override
 	public String toString() {
-		return "AccountJoinVO [aid=" + aid + ", uname=" + uname + ", bname=" + bname + ", balance=" + balance + "]";
+		return "AccountJoinVO [aid=" + aid + ", uname=" + uname + ", bcode=" + bcode + ", bname=" + bname + ", balance="
+				+ balance + "]";
 	}
 	
 }

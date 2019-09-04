@@ -16,8 +16,8 @@
 <body>
     <div id="login">
         <form action="login" method="post" id="login_form">
-            <input class="login" type="text" id="login_id" name="loginId" placeholder="ID"> <br>
-            <input class="login" type="password" id="login_pw" name="loginPw" placeholder="비밀번호" style="margin-bottom: 0px;">
+            <input class="login" type="text" id="login_id" name="loginId" placeholder="ID" autofocus> <br>
+            <input class="login" style="margin-bottom: 0px;" type="password" id="login_pw" name="loginPw" placeholder="비밀번호">
             <p id="login_result" style="color: red">
             	<c:if test="${result == 'fail'}">
             		ID나 비밀번호가 일치하지 않습니다.

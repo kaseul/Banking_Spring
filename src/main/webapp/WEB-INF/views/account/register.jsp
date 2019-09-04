@@ -58,9 +58,11 @@
 	    		<tr>
 	                <td>
 	                	<div class="dropdown">
-	                		<div id="selectedBank" class="dropdiv" onclick="dropdown()">
+	                		<div id="selectedBank" class="dropdiv" onclick="dropdown('bankDropdown')">
 	                			은행 종류
-	                			<i class="fas fa-chevron-down"></i>
+	                			<div>
+	                				<i class='fas fa-chevron-down'></i>
+                				</div>
 	                		</div>
 	                		<div id="bankDropdown" class="dropdown-content">
 	                			<c:forEach var="bank" items="${banks}">
@@ -91,7 +93,9 @@
                 	</td>
                 </tr>
 	            <tr>
-	            	<td colspan="2" style="text-align: center"><button type="submit">등록</button></td>
+	            	<td colspan="2" style="text-align: center">
+	            		<button type="submit">등록</button>
+            		</td>
 	            </tr>
 	        </table>
         </form>

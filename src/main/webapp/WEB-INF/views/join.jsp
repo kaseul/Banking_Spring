@@ -38,7 +38,7 @@
             <table>
                 <tr>
                     <td width="120">ID</td>
-                    <td><input class="join" type="text" id="join_id" name="id" placeholder="ID" onkeypress="check_id()" required></td>
+                    <td><input class="join" type="text" id="join_id" name="id" placeholder="ID" onkeypress="check_id()" required autofocus></td>
                 </tr>
                 <tr>
                 	<td colspan="2" id="check" style="color: #ff00000;"></td>

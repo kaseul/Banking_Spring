@@ -29,6 +29,11 @@ public class AccountServiceImpl implements AccountService {
 	public List<AccountVO> getUserAccounts(String id) {
 		return accountMapper.getUserAccounts(id);
 	}
+	
+	@Override
+	public AccountVO getAccountWithBank(String aid, String bcode) {
+		return accountMapper.getAccountWithBank(aid, bcode);
+	}
 
 	@Override
 	public void register(AccountVO account) {

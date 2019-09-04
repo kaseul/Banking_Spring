@@ -6,6 +6,7 @@ public class RemitVO {
 	private String outaid;
 	private String inaid;
 	private int price;
+	private int commission;
 	
 	public int getNo() {
 		return no;
@@ -31,10 +32,17 @@ public class RemitVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public int getCommission() {
+		return commission;
+	}
+	public void setCommission(int commission) {
+		this.commission = commission;
+	}
 	
 	@Override
 	public String toString() {
-		return "RemitVO [no=" + no + ", outaid=" + outaid + ", inaid=" + inaid + ", price=" + price + "]";
+		return "RemitVO [no=" + no + ", outaid=" + outaid + ", inaid=" + inaid + ", price=" + price + ", commission="
+				+ commission + "]";
 	}
 	
 }

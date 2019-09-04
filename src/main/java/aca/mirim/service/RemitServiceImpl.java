@@ -3,10 +3,12 @@ package aca.mirim.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import aca.mirim.domain.RemitVO;
 import aca.mirim.mapper.RemitMapper;
 
+@Service
 public class RemitServiceImpl implements RemitService {
 	
 	@Autowired

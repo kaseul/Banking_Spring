@@ -10,6 +10,7 @@ public interface AccountService {
 	public List<AccountVO> getAccounts();
 	public AccountVO getAccount(String aid);
 	public List<AccountVO> getUserAccounts(String id);
+	public AccountVO getAccountWithBank(String aid, String bcode);
 	public void register(AccountVO account);
 	public void modify(AccountVO account);
 	public List<AccountJoinVO> getUserAccountJoins(String id);

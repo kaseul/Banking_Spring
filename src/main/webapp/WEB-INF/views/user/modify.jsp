@@ -68,7 +68,7 @@
 	            </tr>
 	            <tr>
 	                <td>비밀번호</td>    
-	                <td><input class="default" type="password" id="pw" name="password" value="${user.password}"></td>
+	                <td><input class="default" type="password" id="pw" name="password" value="${user.password}" autofocus></td>
 	            </tr>
 	            <tr>
 	                <td>비밀번호 확인</td>    

@@ -33,16 +33,37 @@ function remove(msg, url) {
 	if(confirm(msg)) {
 		location.href=url;
 	}
-	else {
-		
-	}
 }
 
-function dropdown() {
-	document.getElementById("bankDropdown").classList.toggle("show");
+function dropdown(id) {
+	document.getElementById(id).classList.toggle("show");
+	var diffDropdown = document.getElementById("accountDropdown");
+	
+	if(id == "bankDropdown") {
+		diffDropdown = document.getElementById("accountDropdown");
+	}
+	else {
+		diffDropdown = document.getElementById("bankDropdown");
+	}
+	if(diffDropdown != null && diffDropdown.classList.contains("show")) {
+		diffDropdown.classList.remove("show");
+	}
 }
 
 function selectBank(bcode, bname) {
 	document.getElementById("bcode").value = bcode;
-	document.getElementById("selectedBank").innerHTML = bname + "  " + "<i class='fas fa-chevron-down'></i>";
+	document.getElementById("selectedBank").innerHTML = bname + "<div><i class='fas fa-chevron-down'></i></div>";
+}
+
+function selectBank(bcode, bname, commission) {
+	document.getElementById("inbcode").value = bcode;
+	document.getElementById("commission").value = commission;
+	document.getElementById("selectedBank").innerHTML = bname + "<div><i class='fas fa-chevron-down'></i></div>";
+}
+
+function selectAccount(bcode, bname, aid) {
+	document.getElementById("outaid").value = aid;
+	document.getElementById("outbcode").value = bcode;
+	document.getElementById("selectedAccount").innerHTML = bname + " │ " + aid + "<div><i class='fas fa-chevron-down'></i></div>";
+	console.log("selectAccount : " + document.getElementById("outaid").value);
 }

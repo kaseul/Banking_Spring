@@ -58,7 +58,7 @@
                 <tr>
                 	<td>잔액</td>
 	                <td>
-	                	<input class="default" type="number" id="balance" name="balance" placeholder="잔액" min="0" value="${account.balance}" required>
+	                	<input class="default" type="number" id="balance" name="balance" placeholder="잔액" min="0" value="${account.balance}" required autofocus>
                 	</td>
                 </tr>
 	            <tr>
