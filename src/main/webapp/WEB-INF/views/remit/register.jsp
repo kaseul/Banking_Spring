@@ -102,7 +102,7 @@
 	                		</div>
 	                		<div id="bankDropdown" class="dropdown-content">
 	                			<c:forEach var="bank" items="${banks}">
-		                			<a href="javascript:void(0)" onclick="selectBank('${bank.bcode}', '${bank.bname}', '${bank.commission}')">
+		                			<a href="javascript:void(0)" onclick="selectBankWithCom('${bank.bcode}', '${bank.bname}', '${bank.commission}')">
 		                				<img src="<c:url value="/resources/image/bank/logo_${bank.bname}.png"/>" width="30">
 		                				${bank.bname}
 		                			</a>

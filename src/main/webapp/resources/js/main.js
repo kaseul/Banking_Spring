@@ -55,7 +55,7 @@ function selectBank(bcode, bname) {
 	document.getElementById("selectedBank").innerHTML = bname + "<div><i class='fas fa-chevron-down'></i></div>";
 }
 
-function selectBank(bcode, bname, commission) {
+function selectBankWithCom(bcode, bname, commission) {
 	document.getElementById("inbcode").value = bcode;
 	document.getElementById("commission").value = commission;
 	document.getElementById("selectedBank").innerHTML = bname + "<div><i class='fas fa-chevron-down'></i></div>";

@@ -52,7 +52,12 @@ public class RemitController {
 			remitService.remit(remit);
 		}
 		
-		return "redirect:/remit?result=success";
+		return "redirect:/remit/success";
+	}
+	
+	@GetMapping("/remit/success")
+	public void remit_success_get() {
+		System.out.println("remit success get,,,,,,,,,,,,,,,,");
 	}
 	
 }
