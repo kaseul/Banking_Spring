@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import aca.mirim.domain.AccountJoinVO;
+import aca.mirim.domain.BankVO;
 import aca.mirim.domain.RemitVO;
 import aca.mirim.service.AccountService;
 import aca.mirim.service.BankService;
@@ -38,19 +40,38 @@ public class RemitController {
 	}
 	
 	@PostMapping("/remit/register")
-	public String remit_post(RemitVO remit, String inaid, String inbcode) {
+	public String remit_post(RemitVO remit, BankVO outbank, String inaid, String inbcode, Model model) {
 		System.out.println("remit post,,,,,,,,,,,,,,,,");
 		System.out.println(remit + " : " + inaid + " : " + inbcode);
 		
-		if(accountService.getAccountWithBank(inaid, inbcode) == null) {
+		AccountJoinVO inAccount = accountService.getAccountWithBank(inaid, inbcode); 
+		
+		if(inAccount == null) {
 			return "redirect:/remit?result=fail";
 		}
 		else {
 			if(remit.getOutaid().equals(inaid)) {
 				remit.setCommission(0);
 			}
-			remitService.remit(remit);
+			model.addAttribute("remit", remit);
+			model.addAttribute("outbank", outbank);
+			model.addAttribute("inAccount", inAccount);
+
+			return "/remit/check";
 		}
+	}
+	
+	@GetMapping("/remit/check")
+	public void remit_check_get() {
+		System.out.println("remit check get,,,,,,,,,,,,");
+	}
+	
+	@PostMapping("/remit/check")
+	public String remit_check_post(RemitVO remit) {
+		System.out.println("remit check post,,,,,,,,,,,,");
+		System.out.println(remit);
+		
+		remitService.remit(remit);
 		
 		return "redirect:/remit/success";
 	}

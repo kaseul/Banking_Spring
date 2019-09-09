@@ -29,6 +29,17 @@
         }
     </style>
     <script>
+    	window.onload = function() {
+    		if('${result}' != 'null') {
+		  		if('${result}' == 'fail') {
+		  			alert('존재하지 않는 계좌입니다.');
+		  		}
+		  		else {
+		  			alert('정상적으로 송금하였습니다.');
+		  		}
+		  	}
+    	}
+    
 		window.onclick = function(event) {
 		  	if (!event.target.matches('.dropdiv')) {
 		    	var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -40,16 +51,20 @@
 		      		}
 		    	}
 		  	}
-		  	
-		  	if('${result}' != 'null') {
-		  		if('${result}' == 'fail') {
-		  			alert('존재하지 않는 계좌입니다.');
-		  		}
-		  		else {
-		  			alert('정상적으로 송금하였습니다.');
-		  		}
-		  	} 
-		  	
+		}
+		
+		function check() {
+			var outaid = document.getElementById('outaid').value;
+			var inaid = document.getElementById('inaid').value;
+			var inbcode = document.getElementById('inbcode').value;
+			var price = document.getElementById('price').value;
+			
+			if(outaid == "" || inaid == "" || inbcode == "" || price == "") {
+				document.getElementById('button').click();	
+			}
+			else {
+				document.getElementById('submitButton').click();
+			}
 		}
 	</script>
 </head>
@@ -66,76 +81,105 @@
 		</ul>
     </div>
     <div id="container">
-    <div id="account">
-    	<h1>송금</h1>
-    	<hr width="80%">
-    	<form id="register_form" action="/remit/register" method="post">
-	    	<table class="default left">
-	    		<tr>
-	    			<td width="140">
-	                	본인 계좌
-                	</td>
-	                <td>
-	                	<div class="dropdown account">
-	                		<div id="selectedAccount" class="dropdiv account" onclick="dropdown('accountDropdown')">
-	                			계좌 선택
-	                			<div>
-	                				<i class="fas fa-chevron-down"></i>
-                				</div>
-	                		</div>
-	                		<div id="accountDropdown" class="dropdown-content account">
-	                			<c:forEach var="account" items="${accounts}">
-		                			<a href="javascript:void(0)" onclick="selectAccount('${account.bcode}', '${account.bname}', '${account.aid}')">
-		                				<img src="<c:url value="/resources/image/bank/logo_${account.bname}.png"/>" width="30">
-		                				${account.bname} │ ${account.aid}
-		                			</a>
-		                		</c:forEach>
-						  	</div>
-	                	</div>
-	                	<input type="hidden" id="no" name="no" value="0">
-	                	<input type="hidden" id="outaid" name="outaid">
-	                	<input type="hidden" id="outbcode" name="outbcode">
-                	</td>    
-                </tr>
-	            <tr>
-	                <td>
-	                	<div class="dropdown">
-	                		<div id="selectedBank" class="dropdiv" onclick="dropdown('bankDropdown')">
-	                			은행 종류
-	                			<div>
-	                				<i class='fas fa-chevron-down'></i>
-                				</div>
-	                		</div>
-	                		<div id="bankDropdown" class="dropdown-content">
-	                			<c:forEach var="bank" items="${banks}">
-		                			<a href="javascript:void(0)" onclick="selectBankWithCom('${bank.bcode}', '${bank.bname}', '${bank.commission}')">
-		                				<img src="<c:url value="/resources/image/bank/logo_${bank.bname}.png"/>" width="30">
-		                				${bank.bname}
-		                			</a>
-		                		</c:forEach>
-						  	</div>
-	                	</div>
-	                	<input type="hidden" id="inbcode" name="inbcode">
-	                	<input type="hidden" id="commission" name="commission">
-                	</td>    
-	                <td>
-	                	<input class="default" type="text" id="inaid" name="inaid" placeholder="계좌번호" pattern="[0-9]+[0-9-]{7,16}[0-9]" required>
-                	</td>
-	            </tr>
-                <tr>
-                	<td>금액</td>
-	                <td>
-	                	<input class="default" type="number" id="price" name="price" placeholder="금액" min="1" max="1000000" required>
-                	</td>
-                </tr>
-	            <tr>
-	            	<td colspan="2" style="text-align: center">
-	            		<button type="submit">송금</button>
-            		</td>
-	            </tr>
-	        </table>
-        </form>
-    </div>
-    </div>
+	    <div id="remit">
+	    	<h1>송금</h1>
+	    	<hr width="80%">
+	    	<form id="register_form" action="/remit/register" method="post">
+		    	<table class="default left">
+		    		<tr>
+		    			<td width="140">
+		                	본인 계좌
+	                	</td>
+		                <td>
+		                	<div class="dropdown account">
+		                		<div id="selectedAccount" class="dropdiv account" onclick="dropdown('accountDropdown')">
+		                			계좌 선택
+		                			<div>
+		                				<i class="fas fa-chevron-down"></i>
+	                				</div>
+		                		</div>
+		                		<div id="accountDropdown" class="dropdown-content account">
+		                			<c:forEach var="account" items="${accounts}">
+			                			<a onclick="selectAccount('${account.bcode}', '${account.bname}', '${account.aid}')">
+			                				<img src="<c:url value="/resources/image/bank/logo_${account.bcode}.png"/>" width="30">
+			                				${account.bname} │ ${account.aid}
+			                			</a>
+			                		</c:forEach>
+							  	</div>
+		                	</div>
+		                	<input type="hidden" id="no" name="no" value="0">
+		                	<input type="hidden" id="outaid" name="outaid">
+		                	<input type="hidden" id="outbcode" name="bcode">
+		                	<input type="hidden" id="outbname" name="bname">
+	                	</td>    
+	                </tr>
+		            <tr>
+		                <td>
+		                	<div class="dropdown">
+		                		<div id="selectedBank" class="dropdiv" onclick="dropdown('bankDropdown')">
+		                			은행 종류
+		                			<div>
+		                				<i class='fas fa-chevron-down'></i>
+	                				</div>
+		                		</div>
+		                		<div id="bankDropdown" class="dropdown-content">
+		                			<c:forEach var="bank" items="${banks}">
+			                			<a onclick="selectBankWithCom('${bank.bcode}', '${bank.bname}', '${bank.commission}')">
+			                				<img src="<c:url value="/resources/image/bank/logo_${bank.bcode}.png"/>" width="30">
+			                				${bank.bname}
+			                			</a>
+			                		</c:forEach>
+							  	</div>
+		                	</div>
+		                	<input type="hidden" id="inbcode" name="inbcode">
+		                	<input type="hidden" id="commission" name="commission">
+	                	</td>    
+		                <td>
+		                	<input class="default" type="text" id="inaid" name="inaid" placeholder="계좌번호" pattern="[0-9]+[0-9-]{7,16}[0-9]" required>
+	                	</td>
+		            </tr>
+	                <tr>
+	                	<td>금액</td>
+		                <td>
+		                	<input class="default" type="number" id="price" name="price" placeholder="금액" min="1" max="1000000" required>
+	                	</td>
+	                </tr>
+		            <tr>
+		            	<td colspan="2" style="text-align: center">
+		            		<button type="button" class="right" style="border: none;" onclick="check()">
+		            			<i class="fas fa-chevron-right"></i>
+		            		</button>
+		            		<button type="submit" id="submitButton" style="display: none;"></button>
+	            		</td>
+		            </tr>
+		        </table>
+	        </form>
+	    </div> <!-- remit -->
+	    
+	    <!-- modal -->
+	    <input type="hidden" style="" id="button" data-toggle="modal" data-target="#checkModal">
+	    <!-- The Modal -->
+	  	<div class="modal fade" id="checkModal">
+	    	<div class="modal-dialog"> <!--  style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0px; position: relative; width: 100%; height: 100%;" -->
+	      		<div class="modal-content">
+		        	<!-- Modal Header -->
+			        <!-- <div class="modal-header">
+			        	<h4 class="modal-title">Modal Heading</h4>
+			          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div> -->
+			        
+			        <!-- Modal body -->
+			        <div id="modalBody" class="modal-body">
+			        	양식을 모두 입력해주세요
+			        </div>
+			        
+			        <!-- Modal footer -->
+			        <!-- <div class="modal-footer">
+			        	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			        </div> -->
+	      		</div>
+	    	</div>
+	  	</div> <!-- modal -->
+    </div> <!-- container -->
 </body>
 </html>

@@ -80,7 +80,7 @@
 		            			</a>
 	            			</td>
 	            			<td style="text-align: right; padding: 0px; width: 45px;">
-	            				<a class="icon" href="javascript:void(0)" onclick="remove('계좌 해지를 신청하시겠습니까?', '/account/remove?aid=${account.aid}')">
+	            				<a class="icon" onclick="remove('계좌 해지를 신청하시겠습니까?', '/account/remove?aid=${account.aid}')">
 		            				<i class="fas fa-times"></i>
 		            			</a>
 	            			</td>

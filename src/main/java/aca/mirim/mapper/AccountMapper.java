@@ -22,8 +22,8 @@ public interface AccountMapper {
 	@Select("SELECT * FROM accountTbl WHERE id = #{id}")
 	public List<AccountVO> getUserAccounts(String id);
 	
-	@Select("SELECT * FROM accountTbl WHERE aid = #{aid} AND bcode = #{bcode}")
-	public AccountVO getAccountWithBank(@Param("aid") String aid, @Param("bcode") String bcode);
+	@Select("SELECT a.aid, u.uname, b.bcode, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.aid = #{aid} AND a.bcode = #{bcode} AND a.id = u.id AND a.bcode = b.bcode")
+	public AccountJoinVO getAccountWithBank(@Param("aid") String aid, @Param("bcode") String bcode);
 	
 	@Insert("INSERT INTO accountTbl VALUES(#{aid}, #{id}, #{bcode}, #{balance})")
 	public void insertAccount(AccountVO account);

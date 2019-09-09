@@ -31,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	@Override
-	public AccountVO getAccountWithBank(String aid, String bcode) {
+	public AccountJoinVO getAccountWithBank(String aid, String bcode) {
 		return accountMapper.getAccountWithBank(aid, bcode);
 	}
 

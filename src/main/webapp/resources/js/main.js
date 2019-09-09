@@ -64,6 +64,7 @@ function selectBankWithCom(bcode, bname, commission) {
 function selectAccount(bcode, bname, aid) {
 	document.getElementById("outaid").value = aid;
 	document.getElementById("outbcode").value = bcode;
+	document.getElementById("outbname").value = bname;
 	document.getElementById("selectedAccount").innerHTML = bname + " │ " + aid + "<div><i class='fas fa-chevron-down'></i></div>";
 	console.log("selectAccount : " + document.getElementById("outaid").value);
 }

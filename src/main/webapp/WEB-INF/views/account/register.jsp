@@ -66,8 +66,8 @@
 	                		</div>
 	                		<div id="bankDropdown" class="dropdown-content">
 	                			<c:forEach var="bank" items="${banks}">
-		                			<a href="javascript:void(0)" onclick="selectBank('${bank.bcode}', '${bank.bname}')">
-		                				<img src="<c:url value="/resources/image/bank/logo_${bank.bname}.png"/>" width="30">
+		                			<a onclick="selectBank('${bank.bcode}', '${bank.bname}')">
+		                				<img src="<c:url value="/resources/image/bank/logo_${bank.bcode}.png"/>" width="30">
 		                				${bank.bname}
 		                			</a>
 		                		</c:forEach>
