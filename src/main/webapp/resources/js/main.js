@@ -68,3 +68,9 @@ function selectAccount(bcode, bname, aid) {
 	document.getElementById("selectedAccount").innerHTML = bname + " │ " + aid + "<div><i class='fas fa-chevron-down'></i></div>";
 	console.log("selectAccount : " + document.getElementById("outaid").value);
 }
+
+function selectAccountTrans(bcode, bname, aid) {
+	document.getElementById("outaid").value = aid;
+	document.getElementById("selectedAccount").innerHTML = bname + " │ " + aid + "<div><i class='fas fa-chevron-down'></i></div>";
+	console.log("selectAccount : " + document.getElementById("outaid").value);
+}

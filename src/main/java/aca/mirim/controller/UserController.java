@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
 import aca.mirim.service.UserService;
 
