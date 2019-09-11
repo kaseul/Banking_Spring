@@ -24,7 +24,7 @@
         }
         
         svg.sucess, svg.success > path {
-        	color: #3490C9;
+        	color: #3366CC;
         }
     </style>
 </head>

@@ -9,8 +9,7 @@ import aca.mirim.domain.TransactionCountVO;
 
 public interface TransactionMapper {
 	
-	@Select("SELECT TO_CHAR(remit_date, 'RRRR/MM') month, COUNT(*) count FROM remitTbl WHERE outaid = #{outaid} AND remit_date >= #{startDay} "
-			+ "GROUP BY TO_CHAR(remit_date, 'RRRR/MM') ORDER BY month")
+	@Select("SELECT fnMonth(remit_date) month, COUNT(*) count FROM remitTbl WHERE outaid = #{outaid} AND remit_date >= #{startDay} GROUP BY fnMonth(remit_date) ORDER BY month")
 	public List<TransactionCountVO> getTransactionMonthsCount(@Param("outaid") String outaid, @Param("startDay") String startDay);
 	
 }

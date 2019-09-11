@@ -31,6 +31,12 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
+	@RequestMapping("/favicon.ico")
+	public String favicon() {
+		return "forward:/resources/image/favicon.ico";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		/*

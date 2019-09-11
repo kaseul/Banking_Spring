@@ -63,7 +63,7 @@
     </div>
     <div id="container">
 	    <div id="remit">
-	    	<h1>송금</h1>
+	    	<h1>거래 내역 조회</h1>
 	    	<hr width="80%">
 	    	<table class="default left">
 	    		<tr>

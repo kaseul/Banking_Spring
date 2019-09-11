@@ -32,32 +32,33 @@
         }
     </style>
     <script>
-    google.charts.load('current', {'packages':['line']});
+    // google.charts.load('current', {'packages':['line']});
+    google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', '월');
         data.addColumn('number', '거래 내역');
-
-        
         
         data.addRows([
         	<c:forEach var="trans" items="${transactions}">
-        		['${trans.month}', ${trans.count}],
+        		['${trans.month}'.substring(5) + '월', ${trans.count}],
         	</c:forEach>
         ]);
 
 
         var options = {
           title: '월별 거래 내역 조회',
-          curveType: 'function',
           legend: { position: 'bottom' }
         };
 
-    var chart = new google.charts.Line(document.getElementById('chart'));
-
-    chart.draw(data, google.charts.Line.convertOptions(options));
+    // var chart = new google.charts.Line(document.getElementById('chart'));
+    // chart.draw(data, google.charts.Line.convertOptions(options)); 
+    
+    var chart = new google.visualization.LineChart(document.getElementById('chart'));
+    chart.draw(data, options);
+    
   }
 	</script>
 </head>
