@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import aca.mirim.domain.AccountJoinVO;
+import aca.mirim.domain.AccountRemitJoinVO;
 import aca.mirim.domain.AccountVO;
 
 public interface AccountMapper {
@@ -41,4 +42,14 @@ public interface AccountMapper {
 	@Select("SELECT a.aid, u.uname, b.bcode, b.bname, a.balance FROM accountTbl a, userTbl u, bankTbl b WHERE a.aid = #{aid} AND a.id = u.id AND a.bcode = b.bcode")
 	public AccountJoinVO getAccountJoin(String aid);
 	
+	@Select("SELECT r.inaid inaid, b.bcode bcode, b.bname bname, b.commission commission FROM accountTbl a, bankTbl b, remitFavTbl r" + 
+			" WHERE r.outaid = #{outaid} AND r.inaid = a.aid AND a.bcode = b.bcode AND rownum <= 5" + 
+			" ORDER BY r.count DESC")
+	public List<AccountRemitJoinVO> getAccountRemitFav(String outaid);
+	
+	@Select("SELECT DISTINCT r.inaid inaid, b.bcode bcode, b.bname bname, b.commission commission, MAX(remit_date) remit_date FROM accountTbl a, bankTbl b, remitTbl r" + 
+			" WHERE r.outaid = #{outaid} AND r.inaid = a.aid AND a.bcode = b.bcode AND rownum <= 5" + 
+			" GROUP BY r.inaid, b.bcode, b.bname, b.commission" + 
+			" ORDER BY remit_date DESC")
+	public List<AccountRemitJoinVO> getAccountRemitRecent(String outaid);
 }

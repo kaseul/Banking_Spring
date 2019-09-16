@@ -29,17 +29,6 @@
         }
     </style>
     <script>
-    	window.onload = function() {
-    		if('${result}' != 'null') {
-		  		if('${result}' == 'fail') {
-		  			alert('존재하지 않는 계좌입니다.');
-		  		}
-		  		else {
-		  			alert('정상적으로 송금하였습니다.');
-		  		}
-		  	}
-    	}
-    
 		window.onclick = function(event) {
 		  	if (!event.target.matches('.dropdiv')) {
 		    	var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -64,6 +53,87 @@
 			}
 			else {
 				document.getElementById('submitButton').click();
+			}
+		}
+		
+		function trAccount(option) {
+			var tr = document.getElementById('tr');
+			if(option == 'input') {
+				tr.innerHTML = '<td>' +
+                	'<div class="dropdown">' +
+		        		'<div id="selectedBank" class="dropdiv" onclick="dropdown('+"'bankDropdown'"+')">' + 
+		        			'은행 종류' +
+		        			'<div>' +
+		        				"<i class='fas fa-chevron-down'></i>" +
+		    				'</div>' + 
+		        		'</div>' +
+		        		'<div id="bankDropdown" class="dropdown-content">' +
+		        			'<c:forEach var="bank" items="${banks}">' +
+		            			'<a onclick="selectBankWithCom('+"'${bank.bcode}'"+', '+"'${bank.bname}'"+', '+"'${bank.commission}'"+')">' +
+		            				'<img src="<c:url value="/resources/image/bank/logo_${bank.bcode}.png"/>" width="30">' +
+		            				'${bank.bname}' +
+		            			'</a>' +
+		            		'</c:forEach>' +
+					  	'</div>' +
+		        	'</div>' +
+		        	'<input type="hidden" id="inbcode" name="inbcode">' +
+		        	'<input type="hidden" id="commission" name="commission">' +
+		    	'</td>' +    
+		        '<td>' +
+		        	'<input class="default" type="text" id="inaid" name="inaid" placeholder="계좌번호" pattern="[0-9]+[0-9-]{7,16}[0-9]" required>' +
+		    	'</td>';
+			}
+			else if(option == 'fav') {
+				tr.innerHTML = '<td width="140">' +
+            	'송금 계좌' +
+            	'</td>' +
+                '<td>' +
+                	'<div class="dropdown account">' +
+                		'<div id="selectedRemitAccount" class="dropdiv account" onclick="dropdown(' + "'accountRemitDropdown'" + ')">' +
+                			'계좌 선택' +
+                			'<div>' +
+                				'<i class="fas fa-chevron-down"></i>' +
+            				'</div>' +
+                		'</div>' +
+                		'<div id="accountRemitDropdown" class="dropdown-content account">' +
+                			'<c:forEach var="accountFav" items="${accountFavs}">' +
+	                			'<a onclick="selectRemitAccount(' + "'${accountFav.bcode}'" + ', ' + "'${accountFav.bname}'" + ', ' + "'${accountFav.inaid}'" + ', ${accountFav.commission})">' +
+	                				'<img src="<c:url value="/resources/image/bank/logo_${accountFav.bcode}.png"/>" width="30">' +
+	                				'${accountFav.bname} │ ${accountFav.inaid}' +
+	                			'</a>' +
+	                		'</c:forEach>' +
+					  	'</div>' +
+                	'</div>' +
+                	'<input type="hidden" id="inbcode" name="inbcode">' +
+		        	'<input type="hidden" id="commission" name="commission">' +
+		        	'<input type="hidden" id="inaid" name="inaid">' +
+            	'</td>';    
+			}
+			else if(option == 'recent') {
+				tr.innerHTML = '<td width="140">' +
+            	'송금 계좌' +
+            	'</td>' +
+                '<td>' +
+                	'<div class="dropdown account">' +
+                		'<div id="selectedRemitAccount" class="dropdiv account" onclick="dropdown(' + "'accountRemitDropdown'" + ')">' +
+                			'계좌 선택' +
+                			'<div>' +
+                				'<i class="fas fa-chevron-down"></i>' +
+            				'</div>' +
+                		'</div>' +
+                		'<div id="accountRemitDropdown" class="dropdown-content account">' +
+                			'<c:forEach var="accountRec" items="${accountRecents}">' +
+	                			'<a onclick="selectRemitAccount(' + "'${accountRec.bcode}'" + ', ' + "'${accountRec.bname}'" + ', ' + "'${accountRec.inaid}'" + ', ${accountRec.commission})">' +
+	                				'<img src="<c:url value="/resources/image/bank/logo_${accountRec.bcode}.png"/>" width="30">' +
+	                				'${accountRec.bname} │ ${accountRec.inaid}' +
+	                			'</a>' +
+	                		'</c:forEach>' +
+					  	'</div>' +
+                	'</div>' +
+                	'<input type="hidden" id="inbcode" name="inbcode">' +
+		        	'<input type="hidden" id="commission" name="commission">' +
+		        	'<input type="hidden" id="inaid" name="inaid">' +
+            	'</td>';    
 			}
 		}
 	</script>
@@ -91,7 +161,7 @@
 		                	본인 계좌
 	                	</td>
 		                <td>
-		                	<div class="dropdown account">
+		                	<%-- <div class="dropdown account">
 		                		<div id="selectedAccount" class="dropdiv account" onclick="dropdown('accountDropdown')">
 		                			계좌 선택
 		                			<div>
@@ -100,20 +170,30 @@
 		                		</div>
 		                		<div id="accountDropdown" class="dropdown-content account">
 		                			<c:forEach var="account" items="${accounts}">
-			                			<a onclick="selectAccount('${account.bcode}', '${account.bname}', '${account.aid}')">
+			                			<a onclick="selectAccount('${account.bcode}', '${account.bname}', '${account.aid}', ${account.balance})">
 			                				<img src="<c:url value="/resources/image/bank/logo_${account.bcode}.png"/>" width="30">
 			                				${account.bname} │ ${account.aid}
 			                			</a>
 			                		</c:forEach>
 							  	</div>
-		                	</div>
+		                	</div> --%>
+		                	<img src="<c:url value="/resources/image/bank/logo_${account.bcode}.png"/>" width="30">
+			                ${account.bname} │ ${account.aid}
 		                	<input type="hidden" id="no" name="no" value="0">
-		                	<input type="hidden" id="outaid" name="outaid">
-		                	<input type="hidden" id="outbcode" name="bcode">
-		                	<input type="hidden" id="outbname" name="bname">
+		                	<input type="hidden" id="outaid" name="outaid" value="${account.aid}">
+		                	<input type="hidden" id="outbcode" name="bcode" value="${account.bcode}">
+		                	<input type="hidden" id="outbname" name="bname" value="${account.bname}">
+		                	<input type="hidden" id="outbalance" name="balance" value="${account.balance}">
 	                	</td>    
 	                </tr>
-		            <tr>
+	                <tr>
+	                	<td colspan="2" style="border: none; text-align: right;">
+	                		<button type="button" onclick="trAccount('input')">입력</button>
+	                		<button type="button" onclick="trAccount('fav')">자주</button>
+	                		<button type="button" onclick="trAccount('recent')">최근</button>
+	                	</td>
+	                </tr>
+		            <tr id="tr">
 		                <td>
 		                	<div class="dropdown">
 		                		<div id="selectedBank" class="dropdiv" onclick="dropdown('bankDropdown')">
@@ -145,7 +225,10 @@
 	                	</td>
 	                </tr>
 		            <tr>
-		            	<td colspan="2" style="text-align: center">
+		            	<td colspan="2" style="text-align: left">
+		            		<button type="button" style="border: none;" onclick="history.go(-1)">
+		            			<i class="fas fa-chevron-left"></i>
+		            		</button>
 		            		<button type="button" class="right" style="border: none;" onclick="check()">
 		            			<i class="fas fa-chevron-right"></i>
 		            		</button>

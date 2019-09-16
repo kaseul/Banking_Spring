@@ -10,25 +10,6 @@ function login() {
     }
 }
 
-function join() {
-    var id = document.getElementById('join_id').value.trim();
-    var name = document.getElementById('join_name').value.trim();
-    var pw = document.getElementById('join_pw').value.trim();
-    var pw_check = document.getElementById('join_pw_check').value.trim();
-    var birth = document.getElementById('join_birth').value.trim();
-    var tel = document.getElementById('join_tel').value.trim();
-    
-    if(id == "" || name == "" || pw == "" || pw_check == "" || birth == "" || tel == "") {
-        alert('양식을 모두 입력해주세요');
-    }
-    else if(pw != pw_check) {
-        alert('같은 비밀번호를 입력해주세요')
-    }
-    else {
-        document.getElementById('join_form').submit();
-    }
-}
-
 function remove(msg, url) {
 	if(confirm(msg)) {
 		location.href=url;
@@ -61,12 +42,20 @@ function selectBankWithCom(bcode, bname, commission) {
 	document.getElementById("selectedBank").innerHTML = bname + "<div><i class='fas fa-chevron-down'></i></div>";
 }
 
-function selectAccount(bcode, bname, aid) {
+function selectAccount(bcode, bname, aid, balance) {
 	document.getElementById("outaid").value = aid;
 	document.getElementById("outbcode").value = bcode;
 	document.getElementById("outbname").value = bname;
+	document.getElementById("outbalance").value = balance;
 	document.getElementById("selectedAccount").innerHTML = bname + " │ " + aid + "<div><i class='fas fa-chevron-down'></i></div>";
 	console.log("selectAccount : " + document.getElementById("outaid").value);
+}
+
+function selectRemitAccount(bcode, bname, inaid, commission) {
+	document.getElementById("inaid").value = inaid;
+	document.getElementById("inbcode").value = bcode;
+	document.getElementById("commission").value = commission;
+	document.getElementById("selectedRemitAccount").innerHTML = bname + " │ " + inaid + "<div><i class='fas fa-chevron-down'></i></div>";
 }
 
 function selectAccountTrans(bcode, bname, aid) {

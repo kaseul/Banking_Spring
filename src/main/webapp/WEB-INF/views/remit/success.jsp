@@ -40,18 +40,20 @@
 		  <li><a href="/transaction">거래 내역 조회</a></li>
 		</ul>
     </div>
-    <div id="account" style="text-align: center;">
-    	<h1>송금</h1>
-    	<hr width="80%">
-    	<p style="padding: 50px 0px; font-size: 20px;">
-    		<span>
-				<i class="far fa-check-circle fa-3x success"></i>
-			</span>
-   			<br>
-    		정상적으로 송금을 완료했습니다.
-    	</p>
-    	<br>
-    	<button style="position: absolute; bottom: 30px; transform: translate(-50%);" onclick="location.href='/remit'">확인</button>
+    <div id="container">
+	    <div id="account" style="text-align: center;">
+	    	<h1>송금</h1>
+	    	<hr width="80%">
+	    	<p style="padding: 50px 0px; font-size: 20px;">
+	    		<span>
+					<i class="far fa-check-circle fa-3x success"></i>
+				</span>
+	   			<br>
+	    		정상적으로 송금을 완료했습니다.
+	    	</p>
+	    	<br>
+	    	<button style="position: absolute; bottom: 30px; transform: translate(-50%);" onclick="location.href='/remit'">확인</button>
+	    </div>
     </div>
 </body>
 </html>

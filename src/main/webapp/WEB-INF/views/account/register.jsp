@@ -50,56 +50,57 @@
 		  <li><a href="/transaction">거래 내역 조회</a></li>
 		</ul>
     </div>
-    <div id="account">
-    	<h1>계좌 등록</h1>
-    	<hr width="80%">
-    	<form id="register_form" action="/account/register" method="post">
-	    	<table class="default left">
-	    		<tr>
-	                <td>
-	                	<div class="dropdown">
-	                		<div id="selectedBank" class="dropdiv" onclick="dropdown('bankDropdown')">
-	                			은행 종류
-	                			<div>
-	                				<i class='fas fa-chevron-down'></i>
-                				</div>
-	                		</div>
-	                		<div id="bankDropdown" class="dropdown-content">
-	                			<c:forEach var="bank" items="${banks}">
-		                			<a onclick="selectBank('${bank.bcode}', '${bank.bname}')">
-		                				<img src="<c:url value="/resources/image/bank/logo_${bank.bcode}.png"/>" width="30">
-		                				${bank.bname}
-		                			</a>
-		                		</c:forEach>
-						  	</div>
-	                	</div>
-	                	<input type="hidden" id="bcode" name="bcode">
-                	</td>    
-	                <td>
-	                	<input class="default" type="text" id="aid" name="aid" placeholder="계좌번호" pattern="[0-9]+[0-9-]{7,16}[0-9]" required autofocus>
-                	</td>
-                </tr>
-	            <tr>
-	                <td width="140">계좌주</td>
-	                <td>
-	                	${user.uname}
-	                	<input type="hidden" name="id" value="${user.id}">
-                	</td>
-	            </tr>
-                <tr>
-                	<td>잔액</td>
-	                <td>
-	                	<input class="default" type="number" id="balance" name="balance" placeholder="잔액" min="0" required>
-                	</td>
-                </tr>
-	            <tr>
-	            	<td colspan="2" style="text-align: center">
-	            		<button type="submit">등록</button>
-            		</td>
-	            </tr>
-	        </table>
-        </form>
+    <div id="container">
+	    <div id="account">
+	    	<h1>계좌 등록</h1>
+	    	<hr width="80%">
+	    	<form id="register_form" action="/account/register" method="post">
+		    	<table class="default left">
+		    		<tr>
+		                <td>
+		                	<div class="dropdown">
+		                		<div id="selectedBank" class="dropdiv" onclick="dropdown('bankDropdown')">
+		                			은행 종류
+		                			<div>
+		                				<i class='fas fa-chevron-down'></i>
+	                				</div>
+		                		</div>
+		                		<div id="bankDropdown" class="dropdown-content">
+		                			<c:forEach var="bank" items="${banks}">
+			                			<a onclick="selectBank('${bank.bcode}', '${bank.bname}')">
+			                				<img src="<c:url value="/resources/image/bank/logo_${bank.bcode}.png"/>" width="30">
+			                				${bank.bname}
+			                			</a>
+			                		</c:forEach>
+							  	</div>
+		                	</div>
+		                	<input type="hidden" id="bcode" name="bcode">
+	                	</td>    
+		                <td>
+		                	<input class="default" type="text" id="aid" name="aid" placeholder="계좌번호" pattern="[0-9]+[0-9-]{7,16}[0-9]" required autofocus>
+	                	</td>
+	                </tr>
+		            <tr>
+		                <td width="140">계좌주</td>
+		                <td>
+		                	${user.uname}
+		                	<input type="hidden" name="id" value="${user.id}">
+	                	</td>
+		            </tr>
+	                <tr>
+	                	<td>잔액</td>
+		                <td>
+		                	<input class="default" type="number" id="balance" name="balance" placeholder="잔액" min="0" required>
+	                	</td>
+	                </tr>
+		            <tr>
+		            	<td colspan="2" style="text-align: center">
+		            		<button type="submit">등록</button>
+	            		</td>
+		            </tr>
+		        </table>
+	        </form>
+	    </div>
     </div>
-    
 </body>
 </html>

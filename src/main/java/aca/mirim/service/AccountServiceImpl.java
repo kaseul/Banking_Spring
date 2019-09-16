@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aca.mirim.domain.AccountJoinVO;
+import aca.mirim.domain.AccountRemitJoinVO;
 import aca.mirim.domain.AccountVO;
 import aca.mirim.mapper.AccountMapper;
 
@@ -53,6 +54,16 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public AccountJoinVO getAccountJoin(String aid) {
 		return accountMapper.getAccountJoin(aid);
+	}
+
+	@Override
+	public List<AccountRemitJoinVO> getAccountRemitFav(String outaid) {
+		return accountMapper.getAccountRemitFav(outaid);
+	}
+
+	@Override
+	public List<AccountRemitJoinVO> getAccountRemitRecent(String outaid) {
+		return accountMapper.getAccountRemitRecent(outaid);
 	}
 	
 }

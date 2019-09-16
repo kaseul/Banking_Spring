@@ -12,6 +12,20 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
     <script src="<c:url value="/resources/js/main.js"/>"></script>
+    <style>
+    	html {
+            margin: 0 auto;
+            padding: 0;
+            background: url('<c:url value="/resources/image/index_background.jpg"/>') no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        body {
+        	background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 <body>
     <div id="login">

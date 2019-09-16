@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import aca.mirim.domain.DataVO;
 import aca.mirim.domain.LoginDTO;
 import aca.mirim.domain.UserVO;
 
@@ -29,5 +30,8 @@ public interface UserMapper {
 	
 	@Delete("DELETE userTbl WHERE id=#{id}")
 	public void deleteUser(String id);
+	
+	@Select("SELECT column_name, data_type, data_length FROM cols WHERE table_name = 'USERTBL'")
+	public List<DataVO> getDatas();
 	
 }

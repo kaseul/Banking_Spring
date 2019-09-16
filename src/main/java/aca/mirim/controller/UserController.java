@@ -45,10 +45,10 @@ public class UserController {
 		return "redirect:/user";
 	}
 	
-	@GetMapping("/user/remove")
-	public String remove(HttpSession session) {
+	@GetMapping("/user/logout")
+	public String logout(HttpSession session) {
 		
-		userService.remove((String)session.getAttribute("login"));
+		// userService.remove((String)session.getAttribute("login"));
 		session.removeAttribute("login");
 		
 		return "redirect:/";

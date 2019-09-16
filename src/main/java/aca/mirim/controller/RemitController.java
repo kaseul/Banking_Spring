@@ -33,14 +33,29 @@ public class RemitController {
 		System.out.println("remit get,,,,,,,,,,,");
 		
 		model.addAttribute("result", result);
-		model.addAttribute("banks", bankService.getBanks());
 		model.addAttribute("accounts", accountService.getUserAccountJoins((String)session.getAttribute("login")));
+		
+		return "/remit/account";
+	}
+	
+	@PostMapping("/remit/remit")
+	public String remit_remit_post(String outaid, BankVO outbank, int balance, Model model) {
+		AccountJoinVO account = new AccountJoinVO();
+		account.setAid(outaid);
+		account.setBcode(outbank.getBcode());
+		account.setBname(outbank.getBname());
+		account.setBalance(balance);
+		
+		model.addAttribute("account", account);
+		model.addAttribute("banks", bankService.getBanks());
+		model.addAttribute("accountFavs", accountService.getAccountRemitFav(outaid));
+		model.addAttribute("accountRecents", accountService.getAccountRemitRecent(outaid));
 		
 		return "/remit/register";
 	}
 	
 	@PostMapping("/remit/register")
-	public String remit_post(RemitVO remit, BankVO outbank, String inaid, String inbcode, Model model) {
+	public String remit_post(RemitVO remit, BankVO outbank, int balance, String inaid, String inbcode, Model model) {
 		System.out.println("remit post,,,,,,,,,,,,,,,,");
 		System.out.println(remit + " : " + inaid + " : " + inbcode);
 		
@@ -48,6 +63,12 @@ public class RemitController {
 		
 		if(inAccount == null) {
 			return "redirect:/remit?result=fail";
+		}
+		else if(remit.getOutaid().equals(inaid)) {
+			return "redirect:/remit?result=equal";
+		}
+		else if((balance - remit.getPrice()) < 0) {
+			return "redirect:/remit?result=balance";
 		}
 		else {
 			if(remit.getOutaid().equals(inaid)) {

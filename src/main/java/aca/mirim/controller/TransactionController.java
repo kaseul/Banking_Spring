@@ -1,6 +1,8 @@
 package aca.mirim.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,13 +27,7 @@ import aca.mirim.service.TransactionService;
 public class TransactionController {
 	
 	@Autowired
-	private BankService bankService;
-	
-	@Autowired
 	private AccountService accountService;
-	
-	@Autowired
-	private RemitService remitService;
 	
 	@Autowired
 	private TransactionService tranService;
@@ -46,37 +42,29 @@ public class TransactionController {
 	}
 	
 	@GetMapping("/transaction/inquiry")
-	public String transaction_inquiry_get(@RequestParam String outaid, Model model) {
+	public String transaction_inquiry_get(@RequestParam String outaid, @RequestParam(required=false, defaultValue="0") int month, Model model) {
 		System.out.println("transaction inquiry get,,,,,,,,,,,");
 		
 		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		String startDay = cal.get(Calendar.YEAR) + "/" + String.format("%02d", (cal.get(Calendar.MONTH) + 1) - 5) + "/01";
+		System.out.println("month : " + cal.get(Calendar.MONTH));
 		
+		cal.add(Calendar.MONTH, month);
+		cal.set(Calendar.DATE, 1);
+		String todayMonth = format.format(cal.getTime());
+		cal.add(Calendar.MONTH, 1);
+		String nextMonth = format.format(cal.getTime());
+		
+		System.out.println("todayMonth : " + todayMonth + ", nextMonth : " + nextMonth);
+		
+		model.addAttribute("date", new Date());
+		model.addAttribute("month", month);
 		model.addAttribute("transactions", tranService.getTransactionMonthsCount(outaid, startDay));
+		model.addAttribute("transactionList", tranService.getTransactions(outaid, todayMonth, nextMonth));
+		model.addAttribute("account", accountService.getAccount(outaid));
 		
 		return "/transaction/transaction";
-	}
-	
-	@PostMapping("/transaction/")
-	public String transaction_post(RemitVO remit, BankVO outbank, String inaid, String inbcode, Model model) {
-		System.out.println("remit post,,,,,,,,,,,,,,,,");
-		System.out.println(remit + " : " + inaid + " : " + inbcode);
-		
-		AccountJoinVO inAccount = accountService.getAccountWithBank(inaid, inbcode); 
-		
-		if(inAccount == null) {
-			return "redirect:/remit?result=fail";
-		}
-		else {
-			if(remit.getOutaid().equals(inaid)) {
-				remit.setCommission(0);
-			}
-			model.addAttribute("remit", remit);
-			model.addAttribute("outbank", outbank);
-			model.addAttribute("inAccount", inAccount);
-
-			return "/remit/check";
-		}
 	}
 	
 }

@@ -35,31 +35,33 @@
 		  <li><a href="/transaction">거래 내역 조회</a></li>
 		</ul>
     </div>
-    <div id="user">
-    	<h1>회원 정보</h1>
-    	<hr width="80%">
-    	<table class="default left">
-            <tr>
-                <td width="120">ID</td>
-                <td>${user.id}</td>
-            </tr>
-            <tr>
-                <td>이름</td>    
-                <td>${user.uname}</td>
-            </tr>
-            <tr>
-                <td>생년월일</td>
-                <td><f:formatDate value="${user.birth}" pattern="YYYY/MM/dd"/></td>
-            </tr>
-            <tr>
-                <td>전화번호</td>
-                <td>${user.tel}</td>
-            </tr>
-            <tr>
-            	<td><button onclick="location.href='/user/modify'">정보 수정</button></td>
-            	<td><button class="right" onclick="remove('탈퇴하시겠습니까?', '/user/remove')">회원 탈퇴</button></td>
-            </tr>
-        </table>
+    <div id="container">
+	    <div id="user">
+	    	<h1>회원 정보</h1>
+	    	<hr width="80%">
+	    	<table class="default left">
+	            <tr>
+	                <td width="120">ID</td>
+	                <td>${user.id}</td>
+	            </tr>
+	            <tr>
+	                <td>이름</td>    
+	                <td>${user.uname}</td>
+	            </tr>
+	            <tr>
+	                <td>생년월일</td>
+	                <td><f:formatDate value="${user.birth}" pattern="YYYY/MM/dd"/></td>
+	            </tr>
+	            <tr>
+	                <td>전화번호</td>
+	                <td>${user.tel}</td>
+	            </tr>
+	            <tr>
+	            	<td><button onclick="location.href='/user/modify'">정보 수정</button></td>
+	            	<td><button class="right" onclick="remove('로그아웃하시겠습니까?', '/user/logout')">로그아웃</button></td>
+	            </tr>
+	        </table>
+	    </div>
     </div>
 </body>
 </html>

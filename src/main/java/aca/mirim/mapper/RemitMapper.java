@@ -12,7 +12,7 @@ public interface RemitMapper {
 	@Select("SELECT * FROM remitTbl")
 	public List<RemitVO> getRemitList();
 	
-	@Insert("INSERT INTO remitTbl(no, outaid, inaid, price, commission) VALUES(noseq.NEXTVAL, #{outaid}, #{inaid}, #{price}, #{commission})")
+	@Insert("INSERT INTO remitTbl(outaid, inaid, price, commission) VALUES(#{outaid}, #{inaid}, #{price}, #{commission})")
 	public void insertRemit(RemitVO remit);
 	
 }

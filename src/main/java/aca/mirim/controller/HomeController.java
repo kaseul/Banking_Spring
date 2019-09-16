@@ -85,10 +85,11 @@ public class HomeController {
 	}
 	
 	@GetMapping("/join")
-	public void join_get(Model model) {
+	public void join_get(@RequestParam(required=false, defaultValue="null") String result, Model model) {
 		System.out.println("join get,,,,,,,,,");
 		
-		model.addAttribute("users", userService.getUserList());
+		model.addAttribute("result", result);
+		model.addAttribute("datas", userService.getDatas());
 	}
 	
 	@PostMapping("/join")
@@ -96,9 +97,14 @@ public class HomeController {
 		System.out.println("join post,,,,,,,,,,,");
 		
 		System.out.println(user);
-		userService.register(user);
-		
-		return "redirect:/login";
+		if(userService.getUser(user.getId()) == null) {
+			userService.register(user);
+			
+			return "redirect:/login";
+		}
+		else {
+			return "redirect:/join?result=fail";
+		}
 	}
 	
 	@GetMapping("/user")

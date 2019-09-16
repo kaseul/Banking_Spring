@@ -30,6 +30,23 @@
         }
     </style>
     <script>
+	    window.onload = function() {
+			if('${result}' != 'null') {
+		  		if('${result}' == 'fail') {
+		  			alert('존재하지 않는 계좌입니다.');
+		  		}
+		  		else if('${result}' == 'equal') {
+		  			alert('동일한 계좌를 선택하셨습니다.');
+		  		}
+		  		else if('${result}' == 'balance') {
+		  			alert('잔액이 부족합니다.');
+		  		}
+		  		else {
+		  			alert('정상적으로 송금하였습니다.');
+		  		}
+		  	}
+		}
+	    
 	    window.onclick = function(event) {
 		  	if (!event.target.matches('.dropdiv')) {
 		    	var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -43,14 +60,14 @@
 		  	}
 		}
 	    
-	    function go(element) {
-	    	var outaid = document.getElementById(element).value;
+	    function go() {
+	    	var outaid = document.getElementById('outaid').value;
 	    	
 	    	if(outaid == "") {
 	    		document.getElementById('button').click();
 	    	}
 	    	else {
-	    		location.href = '/transaction/inquiry?outaid=' + outaid;
+	    		document.getElementById('remitForm').submit();
 	    	}
 	    }
 	</script>
@@ -63,14 +80,15 @@
     	<ul>
 		  <li><a href="/user">회원 정보</a></li>
 		  <li><a href="/account">계좌</a></li>
-		  <li><a href="/remit">송금</a></li>
-		  <li><a class="active" href="/transaction">거래 내역 조회</a></li>
+		  <li><a class="active" href="/remit">송금</a></li>
+		  <li><a href="/transaction">거래 내역 조회</a></li>
 		</ul>
     </div>
     <div id="container">
 	    <div id="remit">
-	    	<h1>거래 내역 조회</h1>
+	    	<h1>송금</h1>
 	    	<hr width="80%">
+	    	<form id="remitForm" action="/remit/remit" method="post">
 	    	<table class="default left">
 	    		<tr>
 	    			<td width="140">
@@ -86,7 +104,7 @@
 	                		</div>
 	                		<div id="accountDropdown" class="dropdown-content account">
 	                			<c:forEach var="account" items="${accounts}">
-		                			<a onclick="selectAccountTrans('${account.bcode}', '${account.bname}', '${account.aid}')">
+		                			<a onclick="selectAccount('${account.bcode}', '${account.bname}', '${account.aid}', ${account.balance})">
 		                				<img src="<c:url value="/resources/image/bank/logo_${account.bcode}.png"/>" width="30">
 		                				${account.bname} │ ${account.aid}
 		                			</a>
@@ -94,18 +112,24 @@
 						  	</div>
 	                	</div>
 	                	<input type="hidden" id="outaid" name="outaid">
+	                	<input type="hidden" id="outbcode" name="bcode">
+	                	<input type="hidden" id="outbname" name="bname">
+	                	<input type="hidden" id="outbalance" name="balance">
                 	</td>    
                 </tr>
                 <tr>
-                	<td colspan="2" style="text-align: center">
-                		<button onclick="go('outaid')">조회</button>
+                	<td colspan="2" style="text-align: right">
+                		<button type="button" onclick="go()" style="border: none;">
+                			<i class="fas fa-chevron-right"></i>
+                		</button>
                 	</td>
                 </tr>
 			</table>
+			</form>
 	    </div> <!-- remit -->
 	    
 	    <!-- modal -->
-	    <input type="hidden" style="" id="button" data-toggle="modal" data-target="#checkModal">
+	    <input type="hidden" id="button" data-toggle="modal" data-target="#checkModal">
 	    <!-- The Modal -->
 	  	<div class="modal fade" id="checkModal">
 	    	<div class="modal-dialog"> <!--  style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0px; position: relative; width: 100%; height: 100%;" -->
